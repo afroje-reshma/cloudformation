@@ -1,7 +1,6 @@
 {
 "AWSTemplateFormatVersion": "2010-09-09",
-"Description": "[afroje-jenkins]"
-
+"Description": "[afroje-jenkins]",
 "Mappings": {
   "EC2RegionMap": {
    "us-west-2": {"afrojestack-jenkins": "ami-5ec1673e"}
