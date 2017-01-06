@@ -5,7 +5,7 @@
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"afrojestack-jenkins": "ami-5ec1673e"}
+   "us-west-2": {"afrojejenkins": "ami-5ec1673e"}
   }
 },
 "Parameters" : {
@@ -26,7 +26,7 @@
       "EC2RegionMap", {
        "Ref": "AWS::Region"
       },
-      "afrojestack-jenkins"
+      "afrojejenkins"
      ]
     },
     "InstanceType": {"Ref" : "instancetype"},
@@ -35,7 +35,7 @@
      "sg-d73a84ae"
     ],
 
- "IamInstanceProfile": "afrojestack-jenkins",
+ "IamInstanceProfile": "afrojejenkins",
     "BlockDeviceMappings" : [{
       "DeviceName" : "/dev/xvda",
       "Ebs" : { "VolumeSize" : "8" }
