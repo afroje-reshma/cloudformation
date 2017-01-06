@@ -1,8 +1,11 @@
 {
 "AWSTemplateFormatVersion": "2010-09-09",
 "Description": "[afroje-jenkins]",
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> aefc80e5fecb9e7381acbcd118a34f6c7a4db670
 "Mappings": {
   "EC2RegionMap": {
    "us-west-2": {"afrojejenkins": "ami-5ec1673e"}
