@@ -59,7 +59,7 @@
 "#!/bin/bash -ex",
 "yum install git -y",
 "sudo -u ec2-user bash -c 'cd /home/ec2-user; git clone https://github.com/afroje-reshma/cloudformation.git > /tmp/u01 2>&1 '",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/cloudformation; ./userdata-jenkins > /tmp/u03d 2>&1'",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cloudformation; chmod 755 userdata-jenkins; ./userdata-jenkins > /tmp/u03d 2>&1'",
      ]]}}
    }
   }
