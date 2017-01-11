@@ -30,7 +30,7 @@
     "InstanceType": {"Ref" : "instancetype"},
     "KeyName":  "akey-initial" ,
     "SecurityGroupIds": [
-     "sg-07efab7e"
+     "sg-d73a84ae"
      ],
 
     "BlockDeviceMappings" : [{
