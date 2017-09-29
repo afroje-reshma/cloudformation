@@ -32,7 +32,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 create-job mypipe < mypipe.xm
 #sudo cp ./cf /cf                                                  &> $TMP-3400
 ##Try the following way to install cf cli##
 
-sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo                                                          &> $TMP-3100
+sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo &> $TMP-3100
 sudo yum install cf-cli                                             &> $TMP-3200
 
 
