@@ -9,6 +9,7 @@ wget localhost:8080/jnlpJars/jenkins-cli.jar                       &> $TMP-1400
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin github               &> $TMP-1700
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin job-dsl              &> $TMP-1800
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin workflow-aggregator  &> $TMP-1900
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin workflow-job         &> $TMP-1900
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin groovy               &> $TMP-2000
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin credentials-binding  &> $TMP-2100
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin pipeline-stage-view  &> $TMP-2200
@@ -24,11 +25,16 @@ java -jar jenkins-cli.jar -s http://localhost:8080 create-job mypipe < mypipe.xm
 ## Install PCF CLI
 ####
 
-wget "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.21.1&source=github-rel" -O foo &> $TMP-3000
-tar zxvf foo #creates the executable “cf”                         &> $TMP-3100
-rm foo                                                            &> $TMP-3200
-chmod 755 cf                                                      &> $TMP-3300
-sudo cp ./cf /cf                                                  &> $TMP-3400
+#wget "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.21.1&source=github-rel" -O foo &> $TMP-3000
+#tar zxvf foo #creates the executable “cf”                         &> $TMP-3100
+#rm foo                                                            &> $TMP-3200
+#chmod 755 cf                                                      &> $TMP-3300
+#sudo cp ./cf /cf                                                  &> $TMP-3400
+##Try the following way to install cf cli##
+
+sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo                                                          &> $TMP-3100
+sudo yum install cf-cli                                             &> $TMP-3200
+
 
 ####
 ## for Jenkins' Maven
