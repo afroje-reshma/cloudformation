@@ -1,9 +1,15 @@
 
 export TMP=/tmp/jenkins
-wget http://pkg.jenkins-ci.org/redhat/jenkins-1.653-1.1.noarch.rpm &> $TMP-1000
-sudo rpm -ivh jenkins-1.653-1.1.noarch.rpm                         &> $TMP-1100
-sudo yum install jenkins-1.653-1.1                                 &> $TMP-1200
-sudo service jenkins start                                         &> $TMP-1300
+#wget http://pkg.jenkins-ci.org/redhat/jenkins-1.653-1.1.noarch.rpm &> $TMP-1000
+sudo  yum update                                                    &> $TMP-1000
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo &> $TMP-1100
+sudo rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key                    &> $TMP-1200
+sudo yum install Jenkins                                                                        &> $TMP-1300                                                                                                                                
+sudo service jenkins start                                                                      &> $TMP-1350      
+sudo chkconfig jenkins on                                                                       &> $TMP-1400      
+#sudo rpm -ivh jenkins-1.653-1.1.noarch.rpm                         &> $TMP-1100
+#sudo yum install jenkins-1.653-1.1                                 &> $TMP-1200
+#sudo service jenkins start                                         &> $TMP-1300
 sleep 3m                                                           &> $TMP-1350
 wget localhost:8080/jnlpJars/jenkins-cli.jar                       &> $TMP-1400
 java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin github               &> $TMP-1700
@@ -32,7 +38,7 @@ java -jar jenkins-cli.jar -s http://localhost:8080 create-job mypipe < mypipe.xm
 #sudo cp ./cf /cf                                                  &> $TMP-3400
 ##Try the following way to install cf cli##
 
-sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo                                                          &> $TMP-3100
+sudo wget -O /etc/yum.repos.d/cloudfoundry-cli.repo https://packages.cloudfoundry.org/fedora/cloudfoundry-cli.repo &> $TMP-3100
 sudo yum install cf-cli                                             &> $TMP-3200
 
 
