@@ -1,10 +1,10 @@
 
 export TMP=/tmp/jenkins
 #wget http://pkg.jenkins-ci.org/redhat/jenkins-1.653-1.1.noarch.rpm &> $TMP-1000
-sudo  yum update                                                    &> $TMP-1000
+sudo  yum update -y                                                   &> $TMP-1000
 sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo &> $TMP-1100
 sudo rpm --import http://pkg.jenkins-ci.org/redhat-stable/jenkins-ci.org.key                    &> $TMP-1200
-sudo yum install Jenkins                                                                        &> $TMP-1300                                                                                                                                
+sudo yum install Jenkins  -y                                                                      &> $TMP-1300                                                                                                                                
 sudo service jenkins start                                                                      &> $TMP-1350      
 sudo chkconfig jenkins on                                                                       &> $TMP-1400      
 #sudo rpm -ivh jenkins-1.653-1.1.noarch.rpm                         &> $TMP-1100
