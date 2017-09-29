@@ -1,0 +1,70 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+"Description": "[afroje-jenkins]",
+"Mappings": {
+  "EC2RegionMap": {
+   "us-west-2": {"afrojejenkins": "ami-5ec1673e"}
+  }
+},
+"Parameters" : {
+ "instancetype" : {
+  "Type" : "String"
+ }
+},
+"Resources": {
+  "Server": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "Tags" : [{
+     "Key":"Name",
+     "Value":"atest-jenkins"
+    }],
+    "ImageId": {
+     "Fn::FindInMap": [
+      "EC2RegionMap", {
+       "Ref": "AWS::Region"
+      },
+      "afrojejenkins"
+     ]
+    },
+    "InstanceType": {"Ref" : "instancetype"},
+    "KeyName":  "akey-initial" ,
+    "SecurityGroupIds": [
+     "sg-d73a84ae"
+     ],
+
+    "BlockDeviceMappings" : [{
+      "DeviceName" : "/dev/xvda",
+      "Ebs" : { "VolumeSize" : "20" }
+    }],
+    "Tags" : [
+            {
+                "Key" : "Name",
+                "Value" : "cfn-jenkins"
+    }],
+
+    "UserData": {"Fn::Base64": {"Fn::Join": ["\n",
+     [
+"#!/bin/bash -ex",
+"yum install git -y",
+"yum install httpd -y",
+"cd /var/www/html",
+"echo 'Hello World' > index.html",
+"service httpd restart", 
+"chkconfig httpd on",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user; git clone https://github.com/afroje-reshma/cloudformation.git > /tmp/u01 2>&1 '",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cloudformation; chmod 755 userdata-jenkins; ./userdata-jenkins > /tmp/u03d 2>&1'"
+
+     ]]}}
+   }
+  }
+},
+"Outputs" : {
+  "InstanceID" : {
+    "Description": "The Instance ID",
+    "Value" : { "Fn::GetAtt" : [ "Server" , "PublicIp" ] }
+  }
+}
+}
+
+
