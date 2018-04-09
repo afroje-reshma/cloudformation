@@ -1,0 +1,46 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+
+  "Description" : "Create NewGroup Devlopers2 and add s3 and emr full access to that group with two new policies created by this script",
+
+   "Resources" : {
+   "Devlopers2" : {
+      "Type" : "AWS::IAM::Group"
+   },
+ 
+   "DevS3Policy" : {
+      "Type" : "AWS::IAM::ManagedPolicy",
+      "Properties" : {
+        "Path" : "/",
+        "PolicyDocument" : {
+          "Version" : "2012-10-17",
+          "Statement" : [{
+            "Effect"   : "Allow",
+            "Action"   : "s3:*",
+            "Resource" : "*"
+          }]
+        },
+    "Groups" : [{ "Ref" : "Devlopers2" }]
+
+      }
+    },
+  
+   "DevEMRPolicy" : {
+      "Type" : "AWS::IAM::ManagedPolicy",
+      "Properties" : {
+        "Path" : "/",
+        "PolicyDocument" : {
+        "Version" : "2012-10-17",
+          "Statement": [{
+            "Effect"   : "Allow",
+            "Action"   : "elasticmapreduce:*",
+            "Resource" : "*"
+          }]
+        },
+        "Groups" : [{ "Ref" : "Devlopers2" }]
+      }
+    }
+
+  }
+}
+ 
